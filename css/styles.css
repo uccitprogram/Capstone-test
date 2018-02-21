@@ -1,0 +1,10 @@
+.tweet-body {
+    text-align: left;
+    margin-left: 15px;
+    word-wrap: normal;
+}
+
+.tweet-title {
+    text-align: left;
+    margin-left: 15px;
+}
