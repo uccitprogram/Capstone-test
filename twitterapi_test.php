@@ -36,10 +36,14 @@ $results = $toa->get('search/tweets', $query);
 <div class="container">
     <div class="row">
         <div class="col-sm-offset-1 col-sm-5"> <!--style="width: 500px;"-->
-            <!--<div id="carousel-outer" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">-->
-                    <?php foreach ($results->statuses as $result => $tweet) { ?>
-                        <!--<div class="carousel-item active">-->
+            <div id="carousel-outer" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
+                    $counter = 1;
+                    foreach ($results->statuses as $result => $tweet) { ?>
+                        <div class="carousel-item <?php if ($counter <= 1) {
+                            echo " active";
+                        } ?>">
                             <div class="row">
                                 <div class="col-sm-1">
                                     <img src="<?= $tweet->user->profile_image_url; ?>"/>
@@ -60,17 +64,21 @@ $results = $toa->get('search/tweets', $query);
                                     </p>
                                 </div>
                             </div>
-                        <!--</div>-->
-                    <?php } ?>
-                <!--</div>
-            </div>-->
+                        </div>
+                        <?php
+                        $counter++;
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
         <div class="col-sm-6">
             <div id="fb-root"></div>
-            <script>(function(d, s, id) {
+            <script>(function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
+                    js = d.createElement(s);
+                    js.id = id;
                     js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>
